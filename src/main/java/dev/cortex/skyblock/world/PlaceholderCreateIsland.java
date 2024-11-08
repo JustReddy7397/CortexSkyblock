@@ -5,6 +5,7 @@ import com.infernalsuite.aswm.api.loaders.SlimeLoader;
 import com.infernalsuite.aswm.api.world.SlimeWorld;
 import com.infernalsuite.aswm.api.world.properties.SlimeProperties;
 import com.infernalsuite.aswm.api.world.properties.SlimePropertyMap;
+import com.mojang.authlib.properties.PropertyMap;
 import dev.cortex.skyblock.CortexSkyblock;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -15,18 +16,7 @@ public class PlaceholderCreateIsland {
 
     // ignore this for now we will remove it at a later point in time :)
     public static void createIsland(Player player) {
-        SlimePropertyMap properties = new SlimePropertyMap();
-
-        properties.setValue(SlimeProperties.DIFFICULTY, "normal");
-        properties.setValue(SlimeProperties.SPAWN_X, 17);
-        properties.setValue(SlimeProperties.SPAWN_Y, 104); // prolly move the island to around 30 later so that players have lots of space to build
-        properties.setValue(SlimeProperties.SPAWN_Z, 30);
-        properties.setValue(SlimeProperties.ALLOW_ANIMALS, false); // set to true later
-        properties.setValue(SlimeProperties.ALLOW_MONSTERS, false); // set to true later
-        properties.setValue(SlimeProperties.ENVIRONMENT, "normal");
-        properties.setValue(SlimeProperties.WORLD_TYPE, "DEFAULT");
-        properties.setValue(SlimeProperties.DEFAULT_BIOME, "minecraft:plains");
-
+        SlimePropertyMap properties = defaultProperties();
         AdvancedSlimePaperAPI api = CortexSkyblock.instance.getAsp();
         SlimeLoader loader = CortexSkyblock.instance.getIslandLoader();
         try {
@@ -42,7 +32,22 @@ public class PlaceholderCreateIsland {
             e.printStackTrace();
         }
 
-
-
     }
+
+    public static SlimePropertyMap defaultProperties() {
+        SlimePropertyMap properties = new SlimePropertyMap();
+
+        properties.setValue(SlimeProperties.DIFFICULTY, "normal");
+        properties.setValue(SlimeProperties.SPAWN_X, 17);
+        properties.setValue(SlimeProperties.SPAWN_Y, 104); // prolly move the island to around 30 later so that players have lots of space to build
+        properties.setValue(SlimeProperties.SPAWN_Z, 30);
+        properties.setValue(SlimeProperties.ALLOW_ANIMALS, false); // set to true later
+        properties.setValue(SlimeProperties.ALLOW_MONSTERS, false); // set to true later
+        properties.setValue(SlimeProperties.ENVIRONMENT, "normal");
+        properties.setValue(SlimeProperties.WORLD_TYPE, "DEFAULT");
+        properties.setValue(SlimeProperties.DEFAULT_BIOME, "minecraft:plains");
+
+        return properties;
+    }
+
 }
